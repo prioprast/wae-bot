@@ -6,22 +6,22 @@ let fetch = require('node-fetch')
 let moment = require('moment-timezone')
 const defaultMenu = {
   before: `
-┌─〔 %me 〕
+┌─〔 Stikerin-BOT NodeJS 〕
+│
 ├ Hai, %name!
 │
-├ Tersisa *%limit Limit*
-├ Role *%role*
-├ Level *%level (%exp / %maxexp)* [%xp4levelup]
+├ Limitmu ersisa *%limit Limit*
+├ Role %role
+├ Level: %level
 ├ %totalexp XP secara Total
 │ 
-├ Tanggal: *%week %weton, %date*
-├ Tanggal Islam: *%dateIslamic*
-├ Waktu: *%time*
+├ Hari: %week
+├ Tanggal: %weton %date
+├ %dateIslamic
+├ Waktu: %time WIB
 │
-├ Uptime: *%uptime (%muptime)*
-├ Database: %rtotalreg dari %totalreg
-├ Github:
-├ %github
+├ Aktif selama: %uptime
+├ User: %rtotalreg dari %totalreg nomor
 └────
 %readmore`.trimStart(),
   header: '┌─〔 %category 〕',
@@ -377,7 +377,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
       readmore: readMore
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
-    await conn.send2ButtonLoc(m.chat, await (await fetch(fla + teks)).buffer(), text.trim(), 'made with ❤️ by ariffb', 'Pemilik Bot', `${_p}owner`, 'Donasi', `${_p}donasi`, m)
+    await conn.send2ButtonLoc(m.chat, await (await fetch(fla + teks)).buffer(), text.trim(), 'made with ❤️ by Prio Prastyo', 'Moderator & Owner BOT', `${_p}owner`, 'My status', `${_p}profile`, m)
   } catch (e) {
     conn.reply(m.chat, 'Maaf, menu sedang error', m)
     throw e
