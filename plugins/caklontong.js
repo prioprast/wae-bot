@@ -5,7 +5,7 @@ let handler = async (m, { conn, usedPrefix }) => {
     conn.caklontong = conn.caklontong ? conn.caklontong : {}
     let id = m.chat
     if (id in conn.caklontong) {
-        conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.caklontong[id][0])
+        conn.reply(m.chat, 'Masih ada soal yang belum terjawab di chat ini', conn.caklontong[id][0])
         throw false
     }
     let src = await (await fetch('https://raw.githubusercontent.com/BochilTeam/database/master/games/caklontong.json')).json()
@@ -18,10 +18,10 @@ Ketik ${usedPrefix}calo untuk bantuan
 Bonus: ${poin} XP
 `.trim()
     conn.caklontong[id] = [
-        await conn.sendButton(m.chat, caption, '© stikerin', 'Bantuan', '.calo', m),
+        await conn.sendButton(m.chat, caption, 'Dijawab dengan benar ya kak!', 'Aku butuh bantuan', '.calo', m),
         json, poin,
         setTimeout(async () => {
-            if (conn.caklontong[id]) await conn.sendButton(m.chat, `Waktu habis!\nJawabannya adalah *${json.jawaban}*\n${json.deskripsi}`, '© stikerin', 'Cak Lontong', '.caklontong')
+            if (conn.caklontong[id]) await conn.sendButton(m.chat, `Waktu habis!\nJawabannya adalah *${json.jawaban}*\n${json.deskripsi}`, 'Ayo lagi! Jangan gampang nyerah dong', 'Start kuis', '.caklontong')
             delete conn.caklontong[id]
         }, timeout)
     ]
