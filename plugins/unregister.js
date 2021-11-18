@@ -5,10 +5,8 @@ let handler = async function (m, { args }) {
   let sn = createHash('md5').update(m.sender).digest('hex')
   if (args[0] !== sn) throw 'Serial Number salah'
   user.registered = false
-  m.reply(`Unreg berhasil!`)
+  m.reply(`Unregister berhasil!`)
 }
-handler.help = ['', 'ister'].map(v => 'unreg' + v + ' <SN|SERIAL NUMBER>')
-handler.tags = ['xp']
 
 handler.command = /^unreg(ister)?$/i
 handler.register = true
